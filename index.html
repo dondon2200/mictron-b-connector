@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firmness — Professional Wire Connectors | B-Connector & CP-003</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #1a56db;
+      --blue-light: #e8f0fe;
+      --dark: #111827;
+      --mid: #374151;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --white: #ffffff;
+      --section-gap: 96px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); line-height: 1.6; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--mid); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue); color: #fff;
+      border: none; border-radius: 8px;
+      padding: 10px 22px; font-size: 14px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: #1447c0; }
+
+    /* ── PRODUCT SWITCHER ── */
+    .product-switcher {
+      background: #f9fafb;
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .switcher-tabs {
+      display: flex; gap: 0;
+      max-width: 600px; width: 100%;
+    }
+    .switcher-tab {
+      flex: 1; padding: 18px 24px;
+      border: none; background: transparent;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 600; color: var(--muted);
+      border-bottom: 3px solid transparent;
+      transition: color .2s, border-color .2s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .switcher-tab:hover { color: var(--blue); }
+    .switcher-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .switcher-tab .tab-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+    }
+    .tab-badge-bconn { background: #dbeafe; color: var(--blue); }
+    .tab-badge-cp003 { background: #fef3c7; color: #92400e; }
+
+    /* ── PRODUCT PANELS ── */
+    .product-panel { display: none; }
+    .product-panel.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 64px;
+      max-width: 1200px; margin: 0 auto;
+      padding: 80px 40px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue-light); color: var(--blue);
+      border-radius: 100px; padding: 6px 14px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .hero-badge svg { width: 14px; height: 14px; }
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -1.5px; color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero p { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue); color: #fff;
+      border: none; border-radius: 10px;
+      padding: 14px 28px; font-size: 15px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: #1447c0; transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent; color: var(--dark);
+      border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 14px 28px; font-size: 15px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: border-color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+    .hero-img { position: relative; }
+    .hero-img img { width: 100%; border-radius: 20px; box-shadow: 0 24px 64px rgba(0,0,0,0.1); }
+    .hero-badge-ul {
+      position: absolute; bottom: -18px; right: 24px;
+      background: #fff; border-radius: 12px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 700; color: var(--dark);
+    }
+    .ul-dot { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #fafafa; padding: 24px 40px;
+    }
+    .trust-bar-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 600; color: var(--mid);
+    }
+    .trust-item svg { color: var(--blue); width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: var(--section-gap) 40px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 3vw, 40px); font-weight: 800;
+      letter-spacing: -1px; color: var(--dark); margin-bottom: 16px;
+    }
+    .section-sub { font-size: 17px; color: var(--muted); max-width: 600px; line-height: 1.7; }
+
+    /* ── USP GRID ── */
+    .usp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
+    .usp-card {
+      border: 1.5px solid var(--border); border-radius: 16px;
+      padding: 32px; transition: border-color .2s, box-shadow .2s;
+    }
+    .usp-card:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(26,86,219,0.08); }
+    .usp-icon {
+      width: 48px; height: 48px; background: var(--blue-light);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .usp-icon svg { width: 24px; height: 24px; color: var(--blue); }
+    .usp-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--dark); }
+    .usp-card p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .usp-tag {
+      display: inline-block; margin-top: 14px;
+      background: var(--blue-light); color: var(--blue);
+      border-radius: 6px; padding: 4px 10px; font-size: 12px; font-weight: 600;
+    }
+
+    /* ── VERSIONS ── */
+    .versions-section { background: #fafafa; }
+    .versions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+    .version-card {
+      background: #fff; border-radius: 20px;
+      border: 1.5px solid var(--border); overflow: hidden; transition: box-shadow .2s;
+    }
+    .version-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+    .version-card img { width: 100%; height: 280px; object-fit: cover; }
+    .version-card-body { padding: 28px; }
+    .version-badge {
+      display: inline-block; border-radius: 6px;
+      padding: 4px 12px; font-size: 12px; font-weight: 700;
+      margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .badge-white { background: #f3f4f6; color: #374151; }
+    .badge-blue { background: #dbeafe; color: #1a56db; }
+    .version-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+    .version-card p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+    .version-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .version-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--mid);
+    }
+    .version-features li::before {
+      content: ''; width: 18px; height: 18px; flex-shrink: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%231a56db'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E") center/contain no-repeat;
+      margin-top: 2px;
+    }
+
+    /* ── HOW TO USE ── */
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+    .step-card { text-align: center; padding: 24px 16px; }
+    .step-num {
+      width: 48px; height: 48px; background: var(--blue);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 800; color: #fff;
+      margin: 0 auto 20px;
+    }
+    .step-img-wrap {
+      width: 100%; height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; border-radius: 12px; overflow: hidden;
+      background: #f9fafb;
+    }
+    .step-img-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+    .step-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .step-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── SPECS ── */
+    .specs-section { background: #fafafa; }
+    .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 48px; }
+    .specs-table { width: 100%; border-collapse: collapse; }
+    .specs-table th {
+      background: var(--dark); color: #fff;
+      padding: 14px 20px; text-align: left;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+    }
+    .specs-table th:first-child { border-radius: 10px 0 0 0; }
+    .specs-table th:last-child { border-radius: 0 10px 0 0; }
+    .specs-table td { padding: 14px 20px; font-size: 14px; color: var(--mid); border-bottom: 1px solid var(--border); }
+    .specs-table tr:last-child td { border-bottom: none; }
+    .specs-table tr:nth-child(even) td { background: #f9fafb; }
+    .specs-img img { width: 100%; border-radius: 16px; }
+
+    /* ── TARGET ── */
+    .target-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .target-card {
+      border: 1.5px solid var(--border); border-radius: 16px;
+      padding: 28px; text-align: center;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .target-card:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(26,86,219,0.08); }
+    .target-icon { font-size: 40px; margin-bottom: 16px; display: block; }
+    .target-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .target-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta-section { background: var(--dark); color: #fff; text-align: center; padding: 80px 40px; }
+    .cta-section h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+    .cta-section p { font-size: 17px; color: #9ca3af; max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: #fff; color: var(--dark);
+      border: none; border-radius: 10px;
+      padding: 14px 28px; font-size: 15px; font-weight: 700;
+      cursor: pointer; text-decoration: none; transition: background .2s;
+    }
+    .btn-white:hover { background: #f3f4f6; }
+    .btn-outline-white {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.3); border-radius: 10px;
+      padding: 14px 28px; font-size: 15px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: border-color .2s;
+    }
+    .btn-outline-white:hover { border-color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer p { font-size: 13px; color: var(--muted); }
+
+    /* ── ANATOMY DOT ── */
+    .anatomy-dot {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--blue-light); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800; color: var(--blue);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 48px 24px; }
+      .hero-img { order: -1; }
+      .usp-grid, .versions-grid, .specs-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .target-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      section { padding: 64px 24px; }
+      .trust-bar { padding: 20px 24px; }
+      .trust-bar-inner { gap: 24px; }
+      .product-switcher { padding: 0 24px; }
+    }
+    @media (max-width: 480px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .cta-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#"><img src="images/firmness-logo.png" alt="Firmness" style="height: 32px; display: block;" /></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#versions">Versions</a></li>
+    <li><a href="#how-to-use">How to Use</a></li>
+    <li><a href="#specs">Specs</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Request a Quote</a>
+</nav>
+
+<!-- PRODUCT SWITCHER TAB -->
+<div class="product-switcher">
+  <div class="switcher-tabs">
+    <button class="switcher-tab active" onclick="switchProduct('bconn', this)">
+      <span class="tab-badge tab-badge-bconn">Low Voltage</span>
+      B-Connector
+    </button>
+    <button class="switcher-tab" onclick="switchProduct('cp003', this)">
+      <span class="tab-badge tab-badge-cp003">Power Wire</span>
+      CP-003 Connector
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PRODUCT PANEL: B-CONNECTOR               -->
+<!-- ══════════════════════════════════════════ -->
+<div id="panel-bconn" class="product-panel active">
+
+<!-- HERO -->
+<section style="padding: 0;">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="7"/></svg>
+        UL Listed · Industrial Grade
+      </div>
+      <h1>The <span>B-Connector</span> Built for Low-Voltage Pros</h1>
+      <p>No wire stripping. No callbacks. No compromise. The IDC-based butt splice connector trusted by security installers, telecom contractors, and network engineers across the US, EU, and AU markets.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Request Wholesale Quote</a>
+        <a href="#features" class="btn-secondary">See All Features</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="images/hero_both_v4.png" alt="INNFACT B-Connector White and Blue versions" />
+      <div class="hero-badge-ul">
+        <div class="ul-dot"></div>
+        UL Listed &amp; Certified
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      UL Listed Certification
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      No-Strip IDC Technology
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+      Waterproof Gel-Filled Option
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+      22–26 AWG Low-Voltage
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+      Bulk Wholesale Available
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES / USP -->
+<section id="features">
+  <div class="section-inner">
+    <p class="section-label">Why Choose INNFACT</p>
+    <h2 class="section-title">Four Reasons Pros Choose Our B-Connector</h2>
+    <p class="section-sub">Engineered specifically for low-voltage installations where speed, reliability, and safety standards are non-negotiable.</p>
+    <div class="usp-grid">
+      <div class="usp-card">
+        <div class="usp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+        <h3>No-Strip IDC Technology</h3>
+        <p>The internal U-shaped metal blade pierces through wire insulation automatically when crimped. No stripping tool required — insert, crimp, done. Saves significant labor time on every installation.</p>
+        <span class="usp-tag">Insulation Displacement Connector</span>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+        <h3>UL Listed Certification</h3>
+        <p>Certified to UL standards (E199119) — the gold standard for B2B buyers in the US, EU, and AU markets. Your procurement team can approve it with confidence. No liability concerns.</p>
+        <span class="usp-tag">UL E199119 Certified</span>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg></div>
+        <h3>Low-Voltage Specialist</h3>
+        <p>Precision-engineered for 22–26 AWG wire gauges used in telephone lines, Cat5/Cat6 cores, CCTV, alarm systems, and intercoms. Not a generic connector — built for your specific application.</p>
+        <span class="usp-tag">22–26 AWG Optimized</span>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg></div>
+        <h3>Waterproof Gel-Filled (Blue)</h3>
+        <p>The blue version is pre-filled with dielectric silicone gel that fully encapsulates the copper contact after crimping. Rated IPX4 — blocks moisture, prevents oxidation, and eliminates costly callbacks.</p>
+        <span class="usp-tag">IPX4 Waterproof · Gel-Filled</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERSIONS -->
+<section id="versions" class="versions-section">
+  <div class="section-inner">
+    <p class="section-label">Product Versions</p>
+    <h2 class="section-title">Two Versions. One Perfect Fit.</h2>
+    <p class="section-sub">Choose the standard version for indoor installations, or the waterproof gel-filled version for outdoor and harsh environments.</p>
+    <div class="versions-grid">
+      <div class="version-card">
+        <img src="images/hero_white_v2.png" alt="White B-Connector Standard" />
+        <div class="version-card-body">
+          <span class="version-badge badge-white">Standard</span>
+          <h3>White B-Connector</h3>
+          <p>The classic IDC splice connector for indoor low-voltage work. Fast, reliable, and UL Listed for professional installations.</p>
+          <ul class="version-features">
+            <li>No-strip IDC technology</li>
+            <li>22–26 AWG wire gauge</li>
+            <li>UL Listed (E199119)</li>
+            <li>PVC flame-retardant shell</li>
+            <li>Tin-plated copper contact</li>
+          </ul>
+        </div>
+      </div>
+      <div class="version-card">
+        <img src="images/hero_blue_v3.png" alt="Blue B-Connector Waterproof" />
+        <div class="version-card-body">
+          <span class="version-badge badge-blue">Waterproof</span>
+          <h3>Blue B-Connector</h3>
+          <p>Identical to the white version, but pre-filled with corrosion-resistant silicone gel for outdoor and underground applications.</p>
+          <ul class="version-features">
+            <li>No-strip IDC technology</li>
+            <li>22–26 AWG wire gauge</li>
+            <li>UL Listed (E199119)</li>
+            <li>IPX4 waterproof rated</li>
+            <li>Dielectric silicone gel fill</li>
+            <li>Prevents oxidation &amp; signal loss</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section id="how-to-use">
+  <div class="section-inner">
+    <p class="section-label">Installation Guide</p>
+    <h2 class="section-title">3 Steps to a Perfect Connection</h2>
+    <p class="section-sub">No wire stripping. No special tools. Just a standard pair of pliers and 10 seconds per connection.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-img-wrap"><img src="images/step_1.png" alt="Step 1" /></div>
+        <h4>Place Wires Together</h4>
+        <p>Hold the wires you want to splice side by side. No insulation stripping required prior to insertion.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-img-wrap"><img src="images/step_2.png" alt="Step 2" /></div>
+        <h4>Insert Into Connector</h4>
+        <p>Push both wires together into the open end of the B-Connector until they reach the stop.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-img-wrap"><img src="images/step_3.png" alt="Step 3" /></div>
+        <h4>Crimp with Pliers</h4>
+        <p>Use standard pliers to press the connector button flush. The IDC blade pierces insulation and grips the copper wire.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-img-wrap"><img src="images/step_4.png" alt="Step 4" /></div>
+        <h4>Test &amp; Done</h4>
+        <p>Give the wires a gentle tug to confirm the connection is secure. The job is complete.</p>
+      </div>
+    </div>
+    <div style="margin-top: 48px; border-radius: 16px; overflow: hidden;">
+      <img src="images/reference/how_to_use.png" alt="B-Connector Installation Steps" style="width: 100%; display: block;" />
+    </div>
+  </div>
+</section>
+
+<!-- ANATOMY -->
+<section style="background: #fafafa;">
+  <div class="section-inner">
+    <p class="section-label">Product Anatomy</p>
+    <h2 class="section-title">What's Inside the B-Connector</h2>
+    <p class="section-sub">A precision-engineered three-component system designed for maximum reliability in a minimal footprint.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px;">
+      <div style="background: #fff; border-radius: 20px; border: 1.5px solid var(--border); overflow: hidden; padding: 8px;">
+        <div style="padding: 16px 20px 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted);">Standard — White</div>
+        <img src="images/anatomy_white.jpg" alt="White B-Connector Anatomy" style="width: 100%; display: block; border-radius: 12px;" />
+      </div>
+      <div style="background: #fff; border-radius: 20px; border: 1.5px solid var(--border); overflow: hidden; padding: 8px;">
+        <div style="padding: 16px 20px 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--blue);">Waterproof — Blue</div>
+        <img src="images/anatomy_blue.jpg" alt="Blue B-Connector Anatomy" style="width: 100%; display: block; border-radius: 12px;" />
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px;">
+      <div class="usp-card">
+        <div class="anatomy-dot" style="margin-bottom: 16px;">1</div>
+        <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 8px;">Outer PVC Shell</h4>
+        <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">High-impact, flame-retardant PVC housing protects the internal components and provides a safe, insulated grip for installers.</p>
+      </div>
+      <div class="usp-card">
+        <div class="anatomy-dot" style="margin-bottom: 16px;">2</div>
+        <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 8px;">IDC Metal Housing &amp; Tines</h4>
+        <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">Precision-stamped metal sleeve with insulation-piercing tines. When crimped, the tines bite through the wire jacket and grip the copper conductor directly.</p>
+      </div>
+      <div class="usp-card">
+        <div class="anatomy-dot" style="margin-bottom: 16px; background: #dbeafe; color: var(--blue);">3</div>
+        <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 8px;">Corrosion-Resistive Gel <span style="color: var(--blue); font-size: 12px;">(Blue Only)</span></h4>
+        <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">Pre-filled waterproof silicone gel fully encapsulates the copper contact after crimping. Rated <strong>IPX4</strong> — blocking splash water, moisture, and preventing oxidation for years.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGING -->
+<section id="packaging">
+  <div class="section-inner">
+    <p class="section-label">Packaging Options</p>
+    <h2 class="section-title">Ready for Wholesale &amp; Retail</h2>
+    <p class="section-sub">Available in multiple packaging configurations to suit every distribution channel — from retail bags to bulk storage boxes.</p>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;">
+      <div style="border: 1.5px solid var(--border); border-radius: 20px; overflow: hidden; transition: box-shadow .2s;" onmouseover="this.style.boxShadow='0 16px 48px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+        <img src="images/packaging_white_bag.jpg" alt="White B-Connector Bag Packaging" style="width: 100%; height: 280px; object-fit: cover; display: block;" />
+        <div style="padding: 24px;">
+          <span style="display: inline-block; background: #f3f4f6; color: #374151; border-radius: 6px; padding: 4px 12px; font-size: 12px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase;">Retail Bag</span>
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">White Standard — 100 pcs</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">Resealable poly bag with full product label, UL certification mark, and model specifications. Ideal for retail shelf display.</p>
+        </div>
+      </div>
+      <div style="border: 1.5px solid var(--border); border-radius: 20px; overflow: hidden; transition: box-shadow .2s;" onmouseover="this.style.boxShadow='0 16px 48px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+        <img src="images/packaging_blue.jpg" alt="Blue B-Connector Box Packaging" style="width: 100%; height: 280px; object-fit: cover; display: block;" />
+        <div style="padding: 24px;">
+          <span style="display: inline-block; background: #dbeafe; color: var(--blue); border-radius: 6px; padding: 4px 12px; font-size: 12px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase;">Storage Box</span>
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Blue Waterproof — 200 pcs</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">Clear plastic storage box with secure latch. Keeps connectors organized on the job site. Full INNFACT label with UL mark and QR code.</p>
+        </div>
+      </div>
+      <div style="border: 1.5px solid var(--border); border-radius: 20px; overflow: hidden; transition: box-shadow .2s;" onmouseover="this.style.boxShadow='0 16px 48px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+        <img src="images/packaging_combo.jpg" alt="Combo Box Packaging" style="width: 100%; height: 280px; object-fit: cover; display: block;" />
+        <div style="padding: 24px;">
+          <span style="display: inline-block; background: #f0fdf4; color: #16a34a; border-radius: 6px; padding: 4px 12px; font-size: 12px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase;">Combo Box</span>
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">White &amp; Blue Mix — 1,000 pcs</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">Large storage box containing both white and blue connectors in separate compartments. The perfect wholesale unit for distributors stocking both versions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section id="specs" class="specs-section">
+  <div class="section-inner">
+    <p class="section-label">Technical Specifications</p>
+    <h2 class="section-title">Product Specifications</h2>
+    <div class="specs-grid">
+      <div>
+        <table class="specs-table">
+          <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
+          <tbody>
+            <tr><td>Wire Gauge</td><td>22–26 AWG</td></tr>
+            <tr><td>Wire Type</td><td>Solid or Stranded Copper</td></tr>
+            <tr><td>Overall Length</td><td>0.99" (25 mm)</td></tr>
+            <tr><td>Body Diameter (Large End)</td><td>0.26" (6.5 mm)</td></tr>
+            <tr><td>Body Diameter (Small End)</td><td>0.18" (4.5 mm)</td></tr>
+            <tr><td>Inner Sleeve Length</td><td>0.71" (18 mm)</td></tr>
+            <tr><td>Shell Material</td><td>PVC (Flame Retardant)</td></tr>
+            <tr><td>Contact Material</td><td>Tin-Plated Copper Alloy</td></tr>
+            <tr><td>Gel Fill (Blue)</td><td>Dielectric Silicone Gel</td></tr>
+            <tr><td>Waterproof Rating (Blue)</td><td>IPX4 — Splash Resistant</td></tr>
+            <tr><td>Certification</td><td>UL Listed (E199119)</td></tr>
+            <tr><td>Packaging</td><td>100 pcs / bag · 1,000 pcs / box</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="specs-img">
+        <img src="images/beautified_dimensions_v2.png" alt="B-Connector Dimensions Diagram" style="border: 1.5px solid var(--border); border-radius: 16px;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET MARKETS -->
+<section id="markets">
+  <div class="section-inner">
+    <p class="section-label">B2B Partners</p>
+    <h2 class="section-title">Who We Supply</h2>
+    <p class="section-sub">We partner with distributors and wholesalers who serve professional installers in the low-voltage and security industries.</p>
+    <div class="target-grid">
+      <div class="target-card">
+        <span class="target-icon">🔌</span>
+        <h3>Cable &amp; Wire Wholesalers</h3>
+        <p>Distributors of network cables, telephone lines, and audio/video wiring who need a reliable, certified splice connector to complement their product catalog.</p>
+      </div>
+      <div class="target-card">
+        <span class="target-icon">📷</span>
+        <h3>Low-Voltage &amp; Security Distributors</h3>
+        <p>Suppliers of CCTV systems, access control, intrusion alarms, and intercom equipment who require a professional-grade field connector for their installers.</p>
+      </div>
+      <div class="target-card">
+        <span class="target-icon">📡</span>
+        <h3>Telecommunications Suppliers</h3>
+        <p>Companies providing outdoor telecom enclosures, MDF/IDF cabling consumables, and last-mile infrastructure hardware who need a UL-certified splice solution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end panel-bconn -->
+
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PRODUCT PANEL: CP-003                    -->
+<!-- ══════════════════════════════════════════ -->
+<div id="panel-cp003" class="product-panel">
+
+<!-- HERO -->
+<section style="padding: 0;">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge" style="background: #fef3c7; color: #92400e;">
+        <svg viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="7"/></svg>
+        CE Certified · 18 AWG Power Wire
+      </div>
+      <h1>The <span style="color: #d97706;">CP-003</span> Power Wire Connector</h1>
+      <p>Connect up to 4 wires in one click — no stripping, no tools. Waterproof, gel-filled, and built for 18 AWG power cables. The fastest way to splice power lines for lighting, solar, and outdoor applications.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary" style="background: #d97706;" onmouseover="this.style.background='#b45309'" onmouseout="this.style.background='#d97706'">Request Wholesale Quote</a>
+        <a href="#cp003-features" class="btn-secondary">See All Features</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="images/cp003/hero.jpg" alt="CP-003 Power Wire Connector" />
+      <div class="hero-badge-ul" style="background: #fff;">
+        <div class="ul-dot" style="background: #f59e0b;"></div>
+        CE Certified · Up to 4 Wires
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      No-Strip IDC Technology
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+      Waterproof Gel-Filled
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+      18 AWG Power Wire
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      Up to 4 Wires Per Connector
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+      Bulk Wholesale Available
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES / USP -->
+<section id="cp003-features">
+  <div class="section-inner">
+    <p class="section-label" style="color: #d97706;">Why Choose CP-003</p>
+    <h2 class="section-title">Five Reasons Power Pros Choose CP-003</h2>
+    <p class="section-sub">Engineered for 18 AWG power applications where speed, multi-wire capability, and outdoor durability are essential.</p>
+    <div class="usp-grid">
+      <div class="usp-card">
+        <div class="usp-icon" style="background: #fef3c7;"><svg viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+        <h3>No-Strip Quick Install</h3>
+        <p>Simply insert the wire and press down the upper part of the connector. No insulation stripping required. Dramatically reduces installation time for power wiring tasks.</p>
+        <span class="usp-tag" style="background: #fef3c7; color: #92400e;">IDC Technology</span>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon" style="background: #fef3c7;"><svg viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg></div>
+        <h3>Waterproof &amp; Outdoor Ready</h3>
+        <p>Oil-filled insulation provides excellent waterproofing, protecting connections from moisture, dust, and environmental elements for long-term outdoor use.</p>
+        <span class="usp-tag" style="background: #fef3c7; color: #92400e;">Outdoor Rated</span>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon" style="background: #fef3c7;"><svg viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <h3>Versatile Multi-Wire Support</h3>
+        <p>Accommodates up to 4 wires in a single connector, perfect for creating efficient and secure multiple connections. Ideal for power distribution and extension applications.</p>
+        <span class="usp-tag" style="background: #fef3c7; color: #92400e;">Up to 4 Wires</span>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon" style="background: #fef3c7;"><svg viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+        <h3>99.99% Pure Copper Terminals</h3>
+        <p>High-efficiency power transfer with 99.99% pure copper terminals for superior conductivity and minimal resistance. Supports up to 10A for various power applications.</p>
+        <span class="usp-tag" style="background: #fef3c7; color: #92400e;">10A · Pure Copper</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section id="cp003-how-to-use" style="background: #fafafa;">
+  <div class="section-inner">
+    <p class="section-label" style="color: #d97706;">Installation Guide</p>
+    <h2 class="section-title">4 Steps to Connect Power Wires</h2>
+    <p class="section-sub">No wire stripping needed. Insert, press, connect — and optionally open an extra port for power extension.</p>
+    <div style="margin-top: 48px; border-radius: 20px; overflow: hidden; border: 1.5px solid var(--border);">
+      <img src="images/cp003/how_to_use.jpg" alt="CP-003 Installation Steps" style="width: 100%; display: block;" />
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 32px;">
+      <div style="text-align: center; padding: 20px 12px;">
+        <div class="step-num" style="background: #d97706; margin: 0 auto 16px;">1</div>
+        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">Insert Wires</h4>
+        <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Insert wires into the port. No insulation stripping required prior to insertion.</p>
+      </div>
+      <div style="text-align: center; padding: 20px 12px;">
+        <div class="step-num" style="background: #d97706; margin: 0 auto 16px;">2</div>
+        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">Press Down</h4>
+        <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Press down the upper part of the connector to lock the wires in place.</p>
+      </div>
+      <div style="text-align: center; padding: 20px 12px;">
+        <div class="step-num" style="background: #d97706; margin: 0 auto 16px;">3</div>
+        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">Wires Connected</h4>
+        <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">The wires are now successfully connected with a secure, reliable electrical contact.</p>
+      </div>
+      <div style="text-align: center; padding: 20px 12px;">
+        <div class="step-num" style="background: #d97706; margin: 0 auto 16px;">4</div>
+        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">Optional: Extra Port</h4>
+        <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Cut open the extra port to connect additional wires for power distribution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIMENSIONS -->
+<section id="cp003-specs">
+  <div class="section-inner">
+    <p class="section-label" style="color: #d97706;">Technical Specifications</p>
+    <h2 class="section-title">Product Specifications</h2>
+    <div class="specs-grid">
+      <div>
+        <table class="specs-table">
+          <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
+          <tbody>
+            <tr><td>Model Number</td><td>CP-003</td></tr>
+            <tr><td>Wire Gauge</td><td>18 AWG</td></tr>
+            <tr><td>Max Wires per Connector</td><td>4 wires</td></tr>
+            <tr><td>Maximum Current</td><td>10A</td></tr>
+            <tr><td>Maximum Voltage</td><td>110V</td></tr>
+            <tr><td>Contact Material</td><td>99.99% Pure Copper</td></tr>
+            <tr><td>Shell Material</td><td>Industrial-Grade Polycarbonate</td></tr>
+            <tr><td>Insulation Material</td><td>Polyvinyl Chloride (PVC)</td></tr>
+            <tr><td>Terminal Type</td><td>Screw Terminal / IDC Crimp</td></tr>
+            <tr><td>Waterproofing</td><td>Oil-Filled Gel Insulation</td></tr>
+            <tr><td>Overall Width</td><td>1.25" (31.66 mm)</td></tr>
+            <tr><td>Height (Before Crimp)</td><td>0.65" (16.63 mm)</td></tr>
+            <tr><td>Height (After Crimp)</td><td>0.49" (12.47 mm)</td></tr>
+            <tr><td>Certification</td><td>CE Certified</td></tr>
+            <tr><td>Packaging</td><td>15 pcs / pack</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="specs-img">
+        <img src="images/cp003/dimensions.jpg" alt="CP-003 Dimensions" style="border: 1.5px solid var(--border); border-radius: 16px;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET MARKETS -->
+<section style="background: #fafafa;">
+  <div class="section-inner">
+    <p class="section-label" style="color: #d97706;">B2B Partners</p>
+    <h2 class="section-title">Who We Supply</h2>
+    <p class="section-sub">We partner with distributors serving electricians, lighting contractors, and solar installers who need fast, reliable power wire connections.</p>
+    <div class="target-grid">
+      <div class="target-card">
+        <span class="target-icon">💡</span>
+        <h3>Lighting &amp; Electrical Distributors</h3>
+        <p>Suppliers of LED lighting systems, outdoor fixtures, and electrical accessories who need a fast, waterproof power connector for their installers.</p>
+      </div>
+      <div class="target-card">
+        <span class="target-icon">☀️</span>
+        <h3>Solar &amp; Renewable Energy</h3>
+        <p>Distributors of solar panel systems and off-grid power equipment who require reliable outdoor-rated wire connectors for power distribution.</p>
+      </div>
+      <div class="target-card">
+        <span class="target-icon">🏗️</span>
+        <h3>Electrical Contractors &amp; Wholesalers</h3>
+        <p>B2B suppliers of electrical installation consumables who serve contractors needing efficient, no-strip power wire connectors for 18 AWG applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end panel-cp003 -->
+
+
+<!-- SHARED CTA -->
+<section id="contact" class="cta-section" style="padding: 80px 40px;">
+  <h2>Ready to Stock Our Connectors?</h2>
+  <p>Contact our wholesale team to request samples, pricing tiers, and lead times. We ship globally to distributors in the US, EU, AU, and beyond.</p>
+  <div class="cta-actions">
+    <a href="mailto:Alexis@chianchyun.com?cc=daniel@chianchyun.com&subject=Connector%20Sample%20Request" class="btn-white">Request a Sample</a>
+    <a href="mailto:Alexis@chianchyun.com?cc=daniel@chianchyun.com&subject=Connector%20Wholesale%20Pricing%20Enquiry" class="btn-outline-white">Get Wholesale Pricing</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="images/firmness-logo.png" alt="Firmness" style="height: 28px; display: block;" />
+  <p>© 2026 Firmness Pty Ltd. All rights reserved. Professional wire connectors for global distributors.</p>
+</footer>
+
+<script>
+  function switchProduct(product, btn) {
+    // Update tabs
+    document.querySelectorAll('.switcher-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Update panels
+    document.querySelectorAll('.product-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + product).classList.add('active');
+
+    // Update nav links
+    const navLinks = document.getElementById('nav-links');
+    if (product === 'bconn') {
+      navLinks.innerHTML = `
+        <li><a href="#features">Features</a></li>
+        <li><a href="#versions">Versions</a></li>
+        <li><a href="#how-to-use">How to Use</a></li>
+        <li><a href="#specs">Specs</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="#cp003-features">Features</a></li>
+        <li><a href="#cp003-how-to-use">How to Use</a></li>
+        <li><a href="#cp003-specs">Specs</a></li>
+      `;
+    }
+
+    // Scroll to top of content
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
