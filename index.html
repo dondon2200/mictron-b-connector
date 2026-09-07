@@ -96,12 +96,11 @@
     }
     .sensor-card:hover { border-color: var(--blue); box-shadow: 0 16px 40px rgba(23,32,56,.14); transform: translateY(-3px); }
     .sensor-visual {
-      min-height: 166px; padding: 24px; background: #f5f6f8;
-      display: flex; flex-direction: column; justify-content: space-between;
-      border-bottom: 1px solid var(--border);
+      height: 220px; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 1px solid var(--border); overflow: hidden;
     }
-    .sensor-visual-label { color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
-    .sensor-visual-title { color: var(--dark); font-family: 'Exo 2', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: .5px; }
+    .sensor-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .sensor-card-body { padding: 24px; }
     .sensor-card h3 { color: var(--dark); font-size: 20px; font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
     .sensor-card p { color: var(--muted); font-size: 14px; line-height: 1.65; min-height: 70px; }
@@ -900,10 +899,7 @@
     <p class="section-sub">All three models use the same platinum RTD platform. Select the form factor that matches the surface, adhesive, or pipe installation.</p>
     <div class="sensor-grid">
       <article class="sensor-card">
-        <div class="sensor-visual">
-          <span class="sensor-visual-label">Surface mount</span>
-          <span class="sensor-visual-title">M1 / M</span>
-        </div>
+        <div class="sensor-visual"><img src="images/sensors/temperature-sensor-m1.jpg" alt="Firmness Temperature Sensor M1 M Size" /></div>
         <div class="sensor-card-body">
           <h3>Temperature Sensor M1 (M Size)</h3>
           <p>Compact IP65 surface-mount temperature sensor for industrial equipment and enclosure monitoring.</p>
@@ -918,10 +914,7 @@
       </article>
 
       <article class="sensor-card">
-        <div class="sensor-visual">
-          <span class="sensor-visual-label">Adhesive surface</span>
-          <span class="sensor-visual-title">M / L</span>
-        </div>
+        <div class="sensor-visual"><img src="images/sensors/temperature-sensor-m.jpg" alt="Firmness Temperature Sensor M L Size" /></div>
         <div class="sensor-card-body">
           <h3>Temperature Sensor M (L Size)</h3>
           <p>Pt100 RTD adhesive surface temperature sensor for larger contact areas and equipment panels.</p>
@@ -936,10 +929,7 @@
       </article>
 
       <article class="sensor-card">
-        <div class="sensor-visual">
-          <span class="sensor-visual-label">Pipe monitoring</span>
-          <span class="sensor-visual-title">PIPE / B</span>
-        </div>
+        <div class="sensor-visual"><img src="images/sensors/pipe-temperature-sensor-b.jpg" alt="Firmness Pipe Temperature Sensor B" /></div>
         <div class="sensor-card-body">
           <h3>Pipe Temperature Sensor B</h3>
           <p>Pt100 RTD pipe-clamp sensor for non-invasive measurement on pipes and cylindrical process lines.</p>
