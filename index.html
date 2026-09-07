@@ -84,6 +84,43 @@
     .product-panel { display: none; }
     .product-panel.active { display: block; }
 
+    /* ── TEMPERATURE SENSORS ── */
+    .sensor-intro { background: var(--dark); color: #fff; }
+    .sensor-intro .section-label { color: var(--blue); }
+    .sensor-intro .section-title { color: #fff; max-width: 720px; }
+    .sensor-intro .section-sub { color: #cbd5e1; }
+    .sensor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .sensor-card {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 16px;
+      overflow: hidden; transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .sensor-card:hover { border-color: var(--blue); box-shadow: 0 16px 40px rgba(23,32,56,.14); transform: translateY(-3px); }
+    .sensor-visual {
+      min-height: 166px; padding: 24px; background: #f5f6f8;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .sensor-visual-label { color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
+    .sensor-visual-title { color: var(--dark); font-family: 'Exo 2', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: .5px; }
+    .sensor-card-body { padding: 24px; }
+    .sensor-card h3 { color: var(--dark); font-size: 20px; font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
+    .sensor-card p { color: var(--muted); font-size: 14px; line-height: 1.65; min-height: 70px; }
+    .sensor-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin: 22px 0; padding-top: 18px; border-top: 1px solid var(--border); }
+    .sensor-specs dt { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+    .sensor-specs dd { color: var(--dark); font-size: 13px; font-weight: 700; margin-top: 2px; }
+    .sensor-link { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-size: 14px; font-weight: 700; text-decoration: none; }
+    .sensor-link:hover { color: #b74616; }
+    .sensor-details { background: #f5f6f8; }
+    .sensor-details .section-title { max-width: 650px; }
+    .sensor-table-wrap { overflow-x: auto; margin-top: 40px; }
+    .sensor-table { width: 100%; min-width: 720px; border-collapse: collapse; background: #fff; border: 1px solid var(--border); }
+    .sensor-table th { background: var(--dark); color: #fff; padding: 15px 18px; text-align: left; font-size: 13px; font-weight: 700; }
+    .sensor-table td { padding: 16px 18px; color: var(--mid); font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .sensor-table tr:last-child td { border-bottom: none; }
+    .sensor-table tr:nth-child(even) td { background: #fbfcfd; }
+    .sensor-datasheet { margin-top: 24px; color: var(--muted); font-size: 14px; }
+    .sensor-datasheet a { color: var(--blue); font-weight: 700; }
+
     /* ── HERO ── */
     .hero {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -303,7 +340,7 @@
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; padding: 48px 24px; }
       .hero-img { order: -1; }
-      .usp-grid, .versions-grid, .specs-grid { grid-template-columns: 1fr; }
+      .usp-grid, .versions-grid, .specs-grid, .sensor-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
       .target-grid { grid-template-columns: 1fr; }
       nav { padding: 0 24px; }
@@ -344,6 +381,10 @@
     <button class="switcher-tab" onclick="switchProduct('cp003', this)">
       <span class="tab-badge tab-badge-cp003">Power Wire</span>
       CP-003 Connector
+    </button>
+    <button class="switcher-tab" onclick="switchProduct('sensors', this)">
+      <span class="tab-badge tab-badge-bconn">RTD</span>
+      Temperature Sensors
     </button>
   </div>
 </div>
@@ -840,6 +881,110 @@
 </div><!-- end panel-cp003 -->
 
 
+<!-- ══════════════════════════════════════════ -->
+<!--  PRODUCT PANEL: TEMPERATURE SENSORS        -->
+<!-- ══════════════════════════════════════════ -->
+<div id="panel-sensors" class="product-panel">
+
+<section class="sensor-intro">
+  <div class="section-inner">
+    <p class="section-label">Firmness.industrial · Sensing</p>
+    <h1 class="section-title">Industrial RTD Sensors Built for Reliable Temperature Measurement</h1>
+    <p class="section-sub">Pt100 platinum RTD sensors for surface and pipe temperature monitoring, with stable performance across demanding industrial environments.</p>
+  </div>
+</section>
+
+<section id="sensors">
+  <div class="section-inner">
+    <p class="section-label">Temperature Sensor Series</p>
+    <h2 class="section-title">Choose the mounting format for your application</h2>
+    <p class="section-sub">All three models use the same platinum RTD platform. Select the form factor that matches the surface, adhesive, or pipe installation.</p>
+    <div class="sensor-grid">
+      <article class="sensor-card">
+        <div class="sensor-visual">
+          <span class="sensor-visual-label">Surface mount</span>
+          <span class="sensor-visual-title">M1 / M</span>
+        </div>
+        <div class="sensor-card-body">
+          <h3>Temperature Sensor M1 (M Size)</h3>
+          <p>Compact IP65 surface-mount temperature sensor for industrial equipment and enclosure monitoring.</p>
+          <dl class="sensor-specs">
+            <div><dt>Range</dt><dd>-30°C to 250°C</dd></div>
+            <div><dt>Accuracy</dt><dd>±0.15°C</dd></div>
+            <div><dt>RTD</dt><dd>Pt100, 100 Ω</dd></div>
+            <div><dt>Mounting</dt><dd>Surface mount</dd></div>
+          </dl>
+          <a class="sensor-link" href="https://www.digikey.com.au/en/products/detail/firmness/Temperature-Sensor-M1-M-Size/29705905" target="_blank" rel="noopener">View on DigiKey <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+
+      <article class="sensor-card">
+        <div class="sensor-visual">
+          <span class="sensor-visual-label">Adhesive surface</span>
+          <span class="sensor-visual-title">M / L</span>
+        </div>
+        <div class="sensor-card-body">
+          <h3>Temperature Sensor M (L Size)</h3>
+          <p>Pt100 RTD adhesive surface temperature sensor for larger contact areas and equipment panels.</p>
+          <dl class="sensor-specs">
+            <div><dt>Range</dt><dd>-30°C to 250°C</dd></div>
+            <div><dt>Accuracy</dt><dd>±0.15°C</dd></div>
+            <div><dt>RTD</dt><dd>Pt100, 100 Ω</dd></div>
+            <div><dt>Mounting</dt><dd>Surface mount</dd></div>
+          </dl>
+          <a class="sensor-link" href="https://www.digikey.com.au/en/products/detail/firmness/Temperature-Sensor-M-L-Size/29705904" target="_blank" rel="noopener">View on DigiKey <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+
+      <article class="sensor-card">
+        <div class="sensor-visual">
+          <span class="sensor-visual-label">Pipe monitoring</span>
+          <span class="sensor-visual-title">PIPE / B</span>
+        </div>
+        <div class="sensor-card-body">
+          <h3>Pipe Temperature Sensor B</h3>
+          <p>Pt100 RTD pipe-clamp sensor for non-invasive measurement on pipes and cylindrical process lines.</p>
+          <dl class="sensor-specs">
+            <div><dt>Range</dt><dd>-30°C to 250°C</dd></div>
+            <div><dt>Accuracy</dt><dd>±0.15°C</dd></div>
+            <div><dt>RTD</dt><dd>Pt100, 100 Ω</dd></div>
+            <div><dt>Mounting</dt><dd>Clamp on</dd></div>
+          </dl>
+          <a class="sensor-link" href="https://www.digikey.com.au/en/products/detail/firmness/Pipe-Temperature-Sensor-B/29705906" target="_blank" rel="noopener">View on DigiKey <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="sensor-specs" class="sensor-details">
+  <div class="section-inner">
+    <p class="section-label">Technical Specifications</p>
+    <h2 class="section-title">One RTD platform, three installation formats</h2>
+    <div class="sensor-table-wrap">
+      <table class="sensor-table">
+        <thead>
+          <tr><th>Specification</th><th>M1 (M Size)</th><th>M (L Size)</th><th>Pipe Sensor B</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sensor type</td><td>Platinum Pt100 RTD</td><td>Platinum Pt100 RTD</td><td>Platinum Pt100 RTD</td></tr>
+          <tr><td>Operating temperature</td><td>-30°C to 250°C</td><td>-30°C to 250°C</td><td>-30°C to 250°C</td></tr>
+          <tr><td>Accuracy</td><td>±0.15°C</td><td>±0.15°C</td><td>±0.15°C</td></tr>
+          <tr><td>Resistance at 0°C</td><td>100 Ω</td><td>100 Ω</td><td>100 Ω</td></tr>
+          <tr><td>Resistance tolerance</td><td>±0.06%</td><td>±0.06%</td><td>±0.06%</td></tr>
+          <tr><td>Temperature coefficient</td><td>3850 ppm/°C</td><td>3850 ppm/°C</td><td>3850 ppm/°C</td></tr>
+          <tr><td>Mounting / case</td><td>Surface mount / Patch</td><td>Surface mount / Patch</td><td>Clamp on / Pipe Clamp</td></tr>
+          <tr><td>Termination</td><td>Wire leads</td><td>Wire leads</td><td>Wire leads</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sensor-datasheet">Datasheet: <a href="https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8939/Firmness_Datasheet.pdf" target="_blank" rel="noopener">Firmness Industrial Temperature Sensor Datasheet ↗</a></p>
+  </div>
+</section>
+
+</div><!-- end panel-sensors -->
+
+
 <!-- SHARED CTA -->
 <section id="contact" class="cta-section" style="padding: 80px 40px;">
   <h2>Ready to Stock Our Connectors?</h2>
@@ -875,11 +1020,17 @@
         <li><a href="#how-to-use">How to Use</a></li>
         <li><a href="#specs">Specs</a></li>
       `;
-    } else {
+    } else if (product === 'cp003') {
       navLinks.innerHTML = `
         <li><a href="#cp003-features">Features</a></li>
         <li><a href="#cp003-how-to-use">How to Use</a></li>
         <li><a href="#cp003-specs">Specs</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="#sensors">Products</a></li>
+        <li><a href="#sensor-specs">Specs</a></li>
+        <li><a href="#contact">Request a Quote</a></li>
       `;
     }
 
