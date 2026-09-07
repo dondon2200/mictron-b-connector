@@ -363,10 +363,9 @@
 <nav>
   <a href="#" class="brand-logo" aria-label="Firmness industrial home"><strong>Firmness</strong><em>.industrial</em></a>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#versions">Versions</a></li>
-    <li><a href="#how-to-use">How to Use</a></li>
-    <li><a href="#specs">Specs</a></li>
+    <li><a href="#sensors">Products</a></li>
+    <li><a href="#sensor-specs">Specs</a></li>
+    <li><a href="#contact">Request a Quote</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Request a Quote</a>
 </nav>
@@ -374,7 +373,11 @@
 <!-- PRODUCT SWITCHER TAB -->
 <div class="product-switcher">
   <div class="switcher-tabs">
-    <button class="switcher-tab active" onclick="switchProduct('bconn', this)">
+    <button class="switcher-tab active" onclick="switchProduct('sensors', this)">
+      <span class="tab-badge tab-badge-bconn">RTD</span>
+      Temperature Sensors
+    </button>
+    <button class="switcher-tab" onclick="switchProduct('bconn', this)">
       <span class="tab-badge tab-badge-bconn">Low Voltage</span>
       B-Connector
     </button>
@@ -382,17 +385,13 @@
       <span class="tab-badge tab-badge-cp003">Power Wire</span>
       CP-003 Connector
     </button>
-    <button class="switcher-tab" onclick="switchProduct('sensors', this)">
-      <span class="tab-badge tab-badge-bconn">RTD</span>
-      Temperature Sensors
-    </button>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════ -->
 <!--  PRODUCT PANEL: B-CONNECTOR               -->
 <!-- ══════════════════════════════════════════ -->
-<div id="panel-bconn" class="product-panel active">
+<div id="panel-bconn" class="product-panel">
 
 <!-- HERO -->
 <section style="padding: 0;">
@@ -884,7 +883,7 @@
 <!-- ══════════════════════════════════════════ -->
 <!--  PRODUCT PANEL: TEMPERATURE SENSORS        -->
 <!-- ══════════════════════════════════════════ -->
-<div id="panel-sensors" class="product-panel">
+<div id="panel-sensors" class="product-panel active">
 
 <section class="sensor-intro">
   <div class="section-inner">
